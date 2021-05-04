@@ -21,6 +21,7 @@ const Register = () => {
                     <input
                         id="name"
                         type="string"
+                        placeholder="Twoje imię"
                         {...register("name", { required: true, maxLength: 25, minLength: 4 })}
                     />
                     {errors.name && errors.name.type === "required" && <span>Pole imię jest wymagane</span>}
@@ -32,6 +33,7 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="Email"
+                        placeholder="example@example.com"
                         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                     />
                     {errors.email && errors.email.type === "required" && <span>Pole email jest wymagane</span>}

@@ -2138,7 +2138,8 @@ var Register = function Register() {
           children: "Imi\u0119"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
           id: "name",
-          type: "string"
+          type: "string",
+          placeholder: "Twoje imi\u0119"
         }, register("name", {
           required: true,
           maxLength: 25,
@@ -2155,10 +2156,10 @@ var Register = function Register() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
           htmlFor: "email",
           children: "Email"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread(_defineProperty({
           type: "text",
           placeholder: "Email"
-        }, register("email", {
+        }, "placeholder", "example@example.com"), register("email", {
           required: true,
           pattern: /^\S+@\S+$/i
         }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
@@ -6683,7 +6684,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto&family=Rozha+One&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\n    margin: 0;\n    padding: 0;\n    font-family: 'Roboto', sans-serif;\n}\nh1, h2, h3, h4{\n    font-family: 'Rozha One', serif;\n}\ninput{\n    width: 100%;\n    height: 31px;\n    border: 1px solid #000\n}\nbutton{\n    width: 157px;\n    height: 38px;\n    background-color: #CD43FE;\n    color: #FFF;\n    font-weight: bold;\n}\n.input_row{\n    margin-bottom: 15px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\n    margin: 0;\n    padding: 0;\n    font-family: 'Roboto', sans-serif;\n}\nh1, h2, h3, h4{\n    font-family: 'Rozha One', serif;\n}\ninput{\n    width: 100%;\n    height: 31px;\n    border: 1px solid #000;\n    text-indent: 10px;\n}\nbutton{\n    width: 157px;\n    height: 38px;\n    background-color: #CD43FE;\n    color: #FFF;\n    font-weight: bold;\n}\n.input_row{\n    margin-bottom: 15px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
