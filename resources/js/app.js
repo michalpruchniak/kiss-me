@@ -13,3 +13,4 @@ require('./bootstrap');
  */
 
 require('./components/auth/Index');
+require('../css/app.css');
