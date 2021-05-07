@@ -1944,7 +1944,7 @@ function Auth() {
         className: "auth__form__container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "auth__form",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Register__WEBPACK_IMPORTED_MODULE_2__.default, {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_3__.default, {})
         })
       })]
     })]
@@ -1971,79 +1971,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
+/* harmony import */ var _default__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../default */ "./resources/js/components/default.js");
+/* harmony import */ var _include_messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../include/messages */ "./resources/js/components/include/messages.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
 
-var Login = function Login(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(''),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      email = _React$useState2[0],
-      setEmail = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(''),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      password = _React$useState4[0],
-      setPassword = _React$useState4[1];
 
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post('https://api.sanctum.test/login', {
-      email: email,
-      password: password
-    }).then(function (response) {
-      console.log(response);
+
+
+var Register = function Register() {
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_3__.useForm)(),
+      register = _useForm.register,
+      handleSubmit = _useForm.handleSubmit,
+      watch = _useForm.watch,
+      errors = _useForm.formState.errors;
+
+  var onSubmit = function onSubmit(data) {
+    console.log(data.name);
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post('http://localhost:8000/api/login', data).then(function (res) {
+      return console.log(res);
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "Login"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-      onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-        type: "email",
-        name: "email",
-        placeholder: "Email",
-        value: email,
-        onChange: function onChange(e) {
-          return setEmail(e.target.value);
-        },
-        required: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-        type: "password",
-        name: "password",
-        placeholder: "Password",
-        value: password,
-        onChange: function onChange(e) {
-          return setPassword(e.target.value);
-        },
-        required: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-        type: "submit",
-        children: "Login"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "container",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+      children: "Zaloguj si\u0119"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+      onSubmit: handleSubmit(onSubmit),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "input_row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+          htmlFor: "email",
+          children: "Email"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_defineProperty({
+          type: "text",
+          placeholder: "Email"
+        }, "placeholder", "example@example.com"), register("email", {
+          required: true,
+          pattern: /^\S+@\S+$/i
+        }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Pole email jest wymagane"
+        }), errors.email && errors.email.type === "pattern" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "To nie jest prawid\u0142owy format adresu email"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "input_row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+          htmlFor: "password",
+          children: "Has\u0142o"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+          id: "password",
+          type: "password"
+        }, register("password", {
+          required: true,
+          minLength: 8,
+          maxLength: 45
+        }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Pole has\u0142o jest wymagane"
+        }), errors.password && errors.password.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Minimalna ilo\u015B\u0107 znak\xF3w wynosi 8"
+        }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Maksymalna ilo\u015B\u0107 znak\xF3w wynosi 45"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "input_row",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          role: "submit",
+          children: "Zaloguj si\u0119"
+        })
       })]
     })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Register);
 
 /***/ }),
 
@@ -2096,12 +2112,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
 /* harmony import */ var _default__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../default */ "./resources/js/components/default.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _include_messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../include/messages */ "./resources/js/components/include/messages.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2125,18 +2143,18 @@ var Register = function Register() {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
       children: "Zrejestruj si\u0119"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
       onSubmit: handleSubmit(onSubmit),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "input_row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
           htmlFor: "name",
           children: "Imi\u0119"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
           id: "name",
           type: "string",
           placeholder: "Twoje imi\u0119"
@@ -2144,60 +2162,60 @@ var Register = function Register() {
           required: true,
           maxLength: 25,
           minLength: 4
-        }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Pole imi\u0119 jest wymagane"
-        }), errors.name && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Minimalna liczba znak\xF3w wynosi 4"
-        }), errors.name && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Maksymalna liczba znak\xF3w wynosi 25"
+        }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Pole imi\u0119 jest wymagane"
+        }), errors.name && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Minimalna ilo\u015B\u0107 znak\xF3w wynosi 4"
+        }), errors.name && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Maksymalna liczba znak\xF3w wynosi 25"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "input_row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
           htmlFor: "email",
           children: "Email"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread(_defineProperty({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_defineProperty({
           type: "text",
           placeholder: "Email"
         }, "placeholder", "example@example.com"), register("email", {
           required: true,
           pattern: /^\S+@\S+$/i
-        }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Pole email jest wymagane"
-        }), errors.email && errors.email.type === "pattern" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "To nie jest prawid\u0142owy format adresu email"
+        }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Pole email jest wymagane"
+        }), errors.email && errors.email.type === "pattern" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "To nie jest prawid\u0142owy format adresu email"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "input_row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
           htmlFor: "password",
           children: "Has\u0142o"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
           id: "password",
           type: "password"
         }, register("password", {
           required: true,
-          minLength: 5,
+          minLength: 8,
           maxLength: 45
-        }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Pole has\u0142o jest wymagane"
-        }), errors.password && errors.password.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Minimalna liczba znak\xF3w wynosi 5"
-        }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Maksymalna liczba znak\xF3w wynosi 45"
+        }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Pole has\u0142o jest wymagane"
+        }), errors.password && errors.password.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Minimalna ilo\u015B\u0107 znak\xF3w wynosi 8"
+        }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+          message: "Maksymalna ilo\u015B\u0107 znak\xF3w wynosi 45"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "input_row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
           htmlFor: "password_confirmation",
           children: "Powt\xF3rz has\u0142o"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
           id: "password_confirmation",
           type: "password"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "input_row",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           role: "submit",
           children: "Zarejestruj si\u0119"
         })
@@ -2222,6 +2240,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "url": () => (/* binding */ url)
 /* harmony export */ });
 var url = 'localhost:8000';
+
+/***/ }),
+
+/***/ "./resources/js/components/include/messages.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/include/messages.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var message = function message(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "message__error",
+    children: props.message
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (message);
 
 /***/ }),
 
@@ -6684,7 +6727,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto&family=Rozha+One&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\n    margin: 0;\n    padding: 0;\n    font-family: 'Roboto', sans-serif;\n}\nh1, h2, h3, h4{\n    font-family: 'Rozha One', serif;\n}\ninput{\n    width: 100%;\n    height: 31px;\n    border: 1px solid #000;\n    text-indent: 10px;\n}\nbutton{\n    width: 157px;\n    height: 38px;\n    background-color: #CD43FE;\n    color: #FFF;\n    font-weight: bold;\n}\n.input_row{\n    margin-bottom: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\n    margin: 0;\n    padding: 0;\n    font-family: 'Roboto', sans-serif;\n}\nh1, h2, h3, h4{\n    font-family: 'Rozha One', serif;\n}\ninput{\n    width: 100%;\n    height: 31px;\n    border: 1px solid #000;\n    text-indent: 10px;\n}\nbutton{\n    width: 157px;\n    height: 38px;\n    background-color: #CD43FE;\n    color: #FFF;\n    font-weight: bold;\n}\n.input_row{\n    margin-bottom: 15px;\n}\n.message__error{\n    background-color: #ffa6a6;\n    color: #ac1b1b;\n    padding: 10px;\n    border: 1px solid #d42323;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6714,7 +6757,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_img_authimg_png__WEBPACK_IMPORTED_MODULE_2__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "nav {\n  background-color: red;\n}\n\n.auth__container {\n  display: flex;\n  width: 100%;\n  height: 85vh;\n}\n\n.auth__img {\n  display: none;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-position: -50px;\n  background-size: cover;\n  width: 100%;\n}\n.auth__img h2 {\n  margin: 0;\n  color: white;\n  font-size: 25px;\n}\n\n.auth__form__container {\n  position: relative;\n  width: 100%;\n}\n.auth__form__container .auth__form {\n  position: absolute;\n  background-color: #F6F6F6;\n  padding: 35px;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n.auth__form__container .auth__form h2 {\n  text-align: center;\n}\n\n@media (min-width: 900px) {\n  .auth__img {\n    display: block;\n    width: 50%;\n    padding: 10px 35px;\n  }\n  .auth__img h2 {\n    font-size: 50px;\n  }\n\n  .auth__form {\n    width: 50%;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "nav {\n  background-color: red;\n}\n\n.auth__container {\n  display: flex;\n  width: 100%;\n  height: 85vh;\n}\n\n.auth__img {\n  display: none;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-position: -50px;\n  background-size: cover;\n  width: 100%;\n}\n.auth__img h2 {\n  margin: 0;\n  color: white;\n  font-size: 25px;\n}\n\n.auth__form__container {\n  position: relative;\n  width: 100%;\n}\n.auth__form__container .auth__form {\n  position: absolute;\n  background-color: #F6F6F6;\n  padding: 35px;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n}\n.auth__form__container .auth__form h2 {\n  text-align: center;\n}\n\n@media (min-width: 900px) {\n  .auth__img {\n    display: block;\n    width: 40%;\n    padding: 10px 35px;\n  }\n  .auth__img h2 {\n    font-size: 50px;\n  }\n\n  .auth__form__container {\n    position: relative;\n    width: 60%;\n  }\n  .auth__form__container .auth__form {\n    width: 60%;\n  }\n  .auth__form__container .auth__form h2 {\n    text-align: center;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -18,7 +18,8 @@ function Auth() {
                 </div>
                 <div className="auth__form__container">
                     <div className="auth__form">
-                        <Register />
+                        {/* <Register /> */}
+                        <Login />
                     </div>
                 </div>
             </div>

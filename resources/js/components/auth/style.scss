@@ -28,6 +28,7 @@ nav {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        width: 90%;
         h2{
             text-align: center;
         }
@@ -38,13 +39,22 @@ nav {
 @media(min-width: 900px){
     .auth__img{
         display: block;
-        width: 50%;
+        width: 40%;
         padding: 10px 35px;
         h2 {
             font-size: 50px;
         }
     }
+.auth__form__container{
+    position: relative;
+    width: 60%;
     .auth__form{
-        width: 50%;
+     
+        width: 60%;
+        h2{
+            text-align: center;
+        }
+        
     }
+}
 }

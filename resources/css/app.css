@@ -23,3 +23,9 @@ button{
 .input_row{
     margin-bottom: 15px;
 }
+.message__error{
+    background-color: #ffa6a6;
+    color: #ac1b1b;
+    padding: 10px;
+    border: 1px solid #d42323;
+}

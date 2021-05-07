@@ -1,42 +1,50 @@
 import React from 'react';
-import axios from 'axios';
+import ReactDOM from 'react-dom';
+import axios from 'axios'
+import { useForm } from 'react-hook-form'
 
-const Login = (props) => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('https://api.sanctum.test/login', {
-            email: email,
-            password: password
-        }).then(response => {
-            console.log(response)
-        });
+import { url } from '../default'
+import Message from '../include/messages'
+
+const Register = () => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data.name)
+        axios.post('http://localhost:8000/api/login', data)
+            .then(res => console.log(res))
     }
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>  
+        <div className="container">
+            <h2>Zaloguj się</h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="input_row">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        placeholder="example@example.com"
+                        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                    />
+                    {errors.email && errors.email.type === "required" && <Message message="Pole email jest wymagane" />}
+                    {errors.email && errors.email.type === "pattern" && <Message message="To nie jest prawidłowy format adresu email" />}
+                </div>
+                <div className="input_row">
+                    <label htmlFor="password">Hasło</label>
+                    <input
+                        id="password"
+                        type="password"
+                        {...register("password", { required: true, minLength: 8, maxLength: 45 })}
+                    />
+                    {errors.password && errors.password.type === "required" && <Message message="Pole hasło jest wymagane" />}
+                    {errors.password && errors.password.type === "minLength" && <Message message="Minimalna ilość znaków wynosi 8" />}
+                    {errors.password && errors.password.type === "maxLength" && <Message message="Maksymalna ilość znaków wynosi 45" />}
+                </div>
+                <div className="input_row">
+                    <button role="submit">Zaloguj się</button>
+                </div>
             </form>
         </div>
     );
 }
 
-export default Login;
+export default Register;

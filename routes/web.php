@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
 
 // Route::post('/registerme', [AuthController::class, 'register']);
 Route::post('/api/register', [AuthController::class, 'register']);
-Route::post('/loginme', [AuthController::class, 'login']);
+Route::post('/api/login', [AuthController::class, 'login']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

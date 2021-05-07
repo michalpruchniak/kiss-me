@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
 import { url } from '../default'
+import Message from '../include/messages'
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -24,9 +25,9 @@ const Register = () => {
                         placeholder="Twoje imię"
                         {...register("name", { required: true, maxLength: 25, minLength: 4 })}
                     />
-                    {errors.name && errors.name.type === "required" && <span>Pole imię jest wymagane</span>}
-                    {errors.name && errors.name.type === "minLength" && <span>Minimalna liczba znaków wynosi 4</span>}
-                    {errors.name && errors.name.type === "maxLength" && <span>Maksymalna liczba znaków wynosi 25</span>}
+                    {errors.name && errors.name.type === "required" && <Message message="Pole imię jest wymagane" />}
+                    {errors.name && errors.name.type === "minLength" && <Message message="Minimalna ilość znaków wynosi 4" />}
+                    {errors.name && errors.name.type === "maxLength" && <Message message="Maksymalna liczba znaków wynosi 25" />}
                 </div>
                 <div className="input_row">
                     <label htmlFor="email">Email</label>
@@ -36,19 +37,19 @@ const Register = () => {
                         placeholder="example@example.com"
                         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                     />
-                    {errors.email && errors.email.type === "required" && <span>Pole email jest wymagane</span>}
-                    {errors.email && errors.email.type === "pattern" && <span>To nie jest prawidłowy format adresu email</span>}
+                    {errors.email && errors.email.type === "required" && <Message message="Pole email jest wymagane" />}
+                    {errors.email && errors.email.type === "pattern" && <Message message="To nie jest prawidłowy format adresu email" />}
                 </div>
                 <div className="input_row">
                     <label htmlFor="password">Hasło</label>
                     <input 
                         id="password"
                         type="password"
-                        {...register("password", { required: true, minLength: 5, maxLength: 45 })}
+                        {...register("password", { required: true, minLength: 8, maxLength: 45 })}
                     />
-                    {errors.password && errors.password.type === "required" && <span>Pole hasło jest wymagane</span>}
-                    {errors.password && errors.password.type === "minLength" && <span>Minimalna liczba znaków wynosi 5</span>}
-                    {errors.password && errors.password.type === "maxLength" && <span>Maksymalna liczba znaków wynosi 45</span>}
+                    {errors.password && errors.password.type === "required" && <Message message="Pole hasło jest wymagane" />}
+                    {errors.password && errors.password.type === "minLength" && <Message message="Minimalna ilość znaków wynosi 8" />}
+                    {errors.password && errors.password.type === "maxLength" && <Message message="Maksymalna ilość znaków wynosi 45" />}
                 </div>
                 <div className="input_row">
 
