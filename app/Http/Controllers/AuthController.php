@@ -58,10 +58,9 @@ class AuthController extends Controller
         return response()->json(['msg' => 'Logout Successfull']);
     }
 
-
-public function me(Request $request)
-{
-return $request->user();
-}
+    public function example(Request $request)
+    {
+        echo("Hello World");
+    }
 
 }

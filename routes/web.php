@@ -28,5 +28,5 @@ Route::post('/api/login', [AuthController::class, 'login']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+Route::get('/hello', [AuthController::class, 'example'])->middleware('auth:sanctum');
 Route::get('/csrf', [AuthController::class, 'index']);

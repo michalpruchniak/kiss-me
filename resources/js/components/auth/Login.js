@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
@@ -7,15 +6,23 @@ import { url } from '../default'
 import Message from '../include/messages'
 
 const Register = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [logged, setLogged] = useState("none")
     const onSubmit = data => {
-        console.log(data.name)
-        axios.post('http://localhost:8000/api/login', data)
-            .then(res => console.log(res))
+        axios.get(url + "/sanctum/csrf-cookie").then(response => {
+            axios.post(url + '/api/login', data)
+             .then(res => console.log(res))
+             .catch(error => {
+                 if (error.response.status == 401) {
+                    setLogged("block");
+                 }
+             })
+        })
     }
     return (
         <div className="container">
             <h2>Zaloguj się</h2>
+            <Message message="Podany użytkownik nie istnieje, albo hasło jest nieprawidłowe" display={logged} />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="input_row">
                     <label htmlFor="email">Email</label>
